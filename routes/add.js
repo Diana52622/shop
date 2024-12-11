@@ -1,6 +1,7 @@
 const {Router} = require('express')
 const {validationResult} = require('express-validator/check')
 const auth = require('../middleware/auth')
+const roles = require('../middleware/roles')
 const {courseValidators} = require('../utils/validators')
 const db = require('../models')
 const router = Router()
@@ -12,7 +13,7 @@ router.get('/', auth, (req, res) => {
   })
 })
 
-router.post('/', auth, courseValidators, async (req, res) => {
+router.post('/', auth, roles('admin'), courseValidators, async (req, res) => {
   const errors = validationResult(req)
 
   if (!errors.isEmpty()) {

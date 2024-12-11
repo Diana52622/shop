@@ -16,14 +16,14 @@
         <a href="/courses/{{id}}" target="_blank">Открыть курс</a>
         {{#if @root.isAuth}}
 
-          {{#ifeq userId._id @root.userId}}
+          {{#if @root.isAdmin}}
             <a href="/courses/{{id}}/edit?allow=true">Редактировать</a>
-          {{/ifeq}}
+          {{/if}}
 
           <form action="/card/add" method="POST">
             <input type="hidden" name="_csrf" value="{{@root.csrf}}">
             <input type="hidden" name="id" value="{{id}}">
-            <button type="submit" class="btn btn-primary">Купить</button> 
+            <button type="submit" class="btn btn-primary">Купить</button>
           </form>
         {{/if}}
       </div>

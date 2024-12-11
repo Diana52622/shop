@@ -34,11 +34,11 @@ router.post('/login', async (req, res) => {
   try {
     const {email, password} = req.body
 
-    const candidate = await db.users.findOne({where: {email}, attributes: ['id', 'email', 'password']})
+    const candidate = await db.users.findOne({where: {email}, raw: true})
 
     if (candidate) {
       const areSame = await bcrypt.compare(password, candidate.password)
-
+      delete candidate.password
       if (areSame) {
         req.session.user = candidate
         req.session.isAuthenticated = true

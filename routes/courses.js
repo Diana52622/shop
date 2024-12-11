@@ -1,6 +1,7 @@
 const {Router} = require('express')
 const {validationResult} = require('express-validator/check')
 const auth = require('../middleware/auth')
+const roles = require('../middleware/roles')
 const {courseValidators} = require('../utils/validators')
 const db = require('../models')
 const router = Router()
@@ -24,16 +25,13 @@ router.get('/', async (req, res) => {
   }
 })
 
-router.get('/:id/edit', auth, async (req, res) => {
+router.get('/:id/edit', auth, roles('admin'), async (req, res) => {
   if (!req.query.allow) {
     return res.redirect('/')
   }
 
   try {
     const course = await db.courses.findOne({where: {id: req.params.id}})
-    if (!isOwner(course, req)) {
-      return res.redirect('/courses')
-    }
 
     res.render('course-edit', {
       title: `Редактировать ${course.title}`,
@@ -44,7 +42,7 @@ router.get('/:id/edit', auth, async (req, res) => {
   }
 })
 
-router.post('/edit', auth, courseValidators, async (req, res) => {
+router.post('/edit', auth, roles('admin'), courseValidators, async (req, res) => {
   const errors = validationResult(req)
   const {id} = req.body
 
@@ -54,10 +52,6 @@ router.post('/edit', auth, courseValidators, async (req, res) => {
 
   try {
     delete req.body.id
-    const course = await db.courses.findOne({where: {id}})
-    if (!isOwner(course, req)) {
-      return res.redirect('/courses')
-    }
     await db.courses.update(req.body, {where: {id}})
     res.redirect('/courses')
   } catch (e) {
@@ -65,13 +59,14 @@ router.post('/edit', auth, courseValidators, async (req, res) => {
   }
 })
 
-router.post('/remove', auth, async (req, res) => {
+router.post('/remove', auth, roles('admin'), async (req, res) => {
   try {
     const query = {
-      id: req.body.id,
-      userId: req.user.id
+      where: {
+        id: req.body.id,
+      }
     }
-    await db.courses.destroy(query)
+    await db.courses.update({isActive: false}, query)
     res.redirect('/courses')
   } catch (e) {
     console.log(e)

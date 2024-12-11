@@ -26,6 +26,7 @@ module.exports = (sequelize, DataTypes) => {
         avatarUrl: DataTypes.STRING,
         resetToken: DataTypes.STRING,
         resetTokenExp: DataTypes.STRING,
+        roles: DataTypes.JSONB,
         createdAt: DataTypes.DATE,
         updatedAt: DataTypes.DATE
     }, {

@@ -24,6 +24,10 @@ module.exports = (sequelize, DataTypes) => {
         title: DataTypes.STRING,
         price: DataTypes.DOUBLE,
         img: DataTypes.STRING,
+        isActive: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: true,
+        },
         createdAt: DataTypes.DATE,
         updatedAt: DataTypes.DATE
     }, {
