@@ -53,3 +53,138 @@
   max-width: 300px;
   height: auto;
 }
+
+.sidenav a {
+  color: #000;
+}
+
+.sidenav li {
+  padding: 10px;
+}
+
+.brand-logo {
+  font-size: 1.5rem;
+  white-space: nowrap;
+}
+
+.sidenav-trigger {
+  right: 0 !important;
+  position: absolute !important;
+  z-index: 1000;
+}
+
+.nav-wrapper {
+  padding: 0 2rem;
+}
+
+.sidenav {
+  text-align: left;
+}
+
+.sidenav-trigger svg {
+  margin: 14px 0;
+  width: 30px;
+  height: 30px;
+  fill: none;
+  stroke: currentColor;
+}
+.card-image img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover
+}
+
+.card {
+  width: 300px;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 1rem;
+  box-sizing: border-box;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.card-content .price {
+  font-size: 1.5rem;
+}
+
+.col.s12.m6.l4.col.s12.m6.l4.xl3{
+  margin-right: 100px;
+}
+
+
+@media (max-width: 600px) {
+  .card-title {
+    font-size: 1rem;
+  }
+  .price {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .auth {
+    padding: 1rem;
+  }
+
+  .tabs {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .tabs .tab a {
+    font-size: 1.2rem;
+    padding: 10px;
+  }
+
+  .input-field input {
+    font-size: 1rem;
+  }
+
+  .input-field label {
+    font-size: 0.9rem;
+  }
+
+  .btn {
+    width: 100%;
+  }
+
+  .alert {
+    font-size: 1rem;
+  }
+
+  .col.s12.m6.offset-m3 {
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .center-align {
+    text-align: center;
+  }
+
+  .card-action.actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .card {
+    width: 300px;
+    height: 450px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 1rem;
+    box-sizing: border-box;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+  }
+}
+

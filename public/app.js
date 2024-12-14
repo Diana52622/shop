@@ -24,13 +24,20 @@ document.querySelectorAll('.date').forEach(node => {
   node.textContent = toDate(node.textContent)
 })
 
+document.addEventListener('DOMContentLoaded', function () {
+  const sidenav = document.querySelectorAll('.sidenav');
+  M.Sidenav.init(sidenav, {
+    edge: 'right'
+  });
+});
+
 const $card = document.querySelector('#card')
 if ($card) {
   $card.addEventListener('click', event => {
     if (event.target.classList.contains('js-remove')) {
       const id = event.target.dataset.id
       const csrf = event.target.dataset.csrf
-      
+
       fetch('/card/remove/' + id, {
         method: 'delete',
         headers: {
@@ -57,8 +64,8 @@ if ($card) {
           }
         })
     }
-    
+
   })
-} 
+}
 
 M.Tabs.init(document.querySelectorAll('.tabs'))
